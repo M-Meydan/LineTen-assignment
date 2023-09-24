@@ -17,8 +17,10 @@ namespace Application.Features.Customers.Create
 
         bool BeAValidPhoneNumber(int phoneNumber)
         {
-            string pattern = @"^\(\d{3}\) \d{3}-\d{4}$";
-            return Regex.IsMatch(phoneNumber.ToString(), pattern);
+            int minPhoneNumber = 0;
+            int maxPhoneNumber = int.MaxValue;
+
+            return phoneNumber >= minPhoneNumber && phoneNumber <= maxPhoneNumber;
         }
     }
 }
