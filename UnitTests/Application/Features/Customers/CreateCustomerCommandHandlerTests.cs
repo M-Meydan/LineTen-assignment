@@ -1,17 +1,12 @@
 ﻿using Application.Common.Interfaces.Infrastructure.Persistence.Repositories;
-using Application.Features.Customers.Commands.CreateCustomer;
 using Application.Features.Customers.Common;
+using Application.Features.Customers.Create;
 using AutoMapper;
 using Domain.Entities;
 using FluentValidation;
 using FluentValidation.Results;
 using MediatR;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UnitTests.Application.Features.Customers
 {
@@ -100,11 +95,7 @@ namespace UnitTests.Application.Features.Customers
             };
 
             _validatorMock.Setup(validator => validator.Validate(It.IsAny<CreateCustomerCommand>()))
-                         .Returns(new ValidationResult(new[]
-                         {
-                         new ValidationFailure("FirstName", "FirstName is required."),
-                             // Add more validation failures as needed for each field
-                         }));
+                         .Returns(new ValidationResult(new[] { new ValidationFailure("field", "Field is required.")}));
 
             // Act and Assert
             await Assert.ThrowsAsync<ValidationException>(() => _handler.Handle(invalidCommand, CancellationToken.None));

@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
 
-namespace Application.Features.Customers.Queries.GetCustomer
+namespace Application.Features.Customers.Get
 {
     public class GetCustomerQueryValidator : AbstractValidator<GetCustomerQuery>
     {

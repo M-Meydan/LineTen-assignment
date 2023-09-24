@@ -6,7 +6,7 @@ using Domain.Entities;
 using FluentValidation;
 using MediatR;
 
-namespace Application.Features.Customers.Commands.CreateCustomer
+namespace Application.Features.Customers.Create
 {
     public class CreateCustomerCommand : IRequest<CustomerResponse>, IMapTo<Customer>
     {
@@ -14,7 +14,7 @@ namespace Application.Features.Customers.Commands.CreateCustomer
         public string LastName { get; set; }
         public int Phone { get; set; }
         public string Email { get; set; }
-        
+
 
         public class CreateCustomerHandler : IRequestHandler<CreateCustomerCommand, CustomerResponse>
         {

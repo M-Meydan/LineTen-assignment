@@ -1,12 +1,10 @@
 ﻿using Application.Common.Interfaces.Infrastructure.Persistence.Repositories;
-using Application.Features.Customers.Commands.CreateCustomer;
 using Application.Features.Customers.Common;
-using Application.Features.Customers.Queries.GetCustomer;
+using Application.Features.Customers.Get;
 using AutoMapper;
 using Domain.Entities;
 using FluentValidation;
 using FluentValidation.Results;
-using MediatR;
 using Moq;
 
 

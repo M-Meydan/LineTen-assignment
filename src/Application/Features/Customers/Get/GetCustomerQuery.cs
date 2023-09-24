@@ -4,7 +4,7 @@ using AutoMapper;
 using FluentValidation;
 using MediatR;
 
-namespace Application.Features.Customers.Queries.GetCustomer
+namespace Application.Features.Customers.Get
 {
     public class GetCustomerQuery : IRequest<CustomerResponse>
     {

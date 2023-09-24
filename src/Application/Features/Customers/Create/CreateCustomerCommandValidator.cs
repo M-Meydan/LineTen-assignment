@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Application.Features.Customers.Commands.CreateCustomer
+namespace Application.Features.Customers.Create
 {
     public class CreateCustomerCommandValidator : AbstractValidator<CreateCustomerCommand>
     {
