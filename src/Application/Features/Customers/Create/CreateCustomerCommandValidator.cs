@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using System.Text.RegularExpressions;
 
 namespace Application.Features.Customers.Create
 {
@@ -16,7 +17,8 @@ namespace Application.Features.Customers.Create
 
         bool BeAValidPhoneNumber(int phoneNumber)
         {
-            return phoneNumber >= 1000000000 && phoneNumber <= 9999999999;
+            string pattern = @"^\(\d{3}\) \d{3}-\d{4}$";
+            return Regex.IsMatch(phoneNumber.ToString(), pattern);
         }
     }
 }

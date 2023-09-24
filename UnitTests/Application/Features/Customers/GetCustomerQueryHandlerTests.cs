@@ -1,6 +1,8 @@
 ﻿using Application.Common.Interfaces.Infrastructure.Persistence.Repositories;
 using Application.Features.Customers.Common;
+using Application.Features.Customers.Create;
 using Application.Features.Customers.Get;
+using Application.Features.Customers.Update;
 using AutoMapper;
 using Domain.Entities;
 using FluentValidation;
@@ -14,28 +16,30 @@ namespace UnitTests.Application.Features.Customers
     {
         readonly Mock<ICustomerRepository> _customerRepositoryMock;
         readonly Mock<IValidator<GetCustomerQuery>> _validatorMock;
-        readonly Mock<IMapper> _mapperMock;
+        readonly IMapper _mapper;
         readonly GetCustomerQuery.GetCustomerHandler _handler;
 
         public GetCustomerQueryHandlerTests()
         {
             _customerRepositoryMock = new Mock<ICustomerRepository>();
             _validatorMock = new Mock<IValidator<GetCustomerQuery>>();
-            _mapperMock = new Mock<IMapper>();
+            _mapper = new MapperConfiguration(cfg => { cfg.CreateMap<Customer, CustomerResponse>(); }).CreateMapper();
+
 
             _handler = new GetCustomerQuery.GetCustomerHandler(
                 _customerRepositoryMock.Object,
                 _validatorMock.Object,
-                _mapperMock.Object);
+                _mapper);
         }
 
         [Fact]
         public async Task Handle_ReturnsCustomerResponse_WhenQueryIsValid()
         {
-            var query = new GetCustomerQuery(Guid.NewGuid());
+            var Id = Guid.NewGuid();
+            var query = new GetCustomerQuery();
             var expectedCustomerResponse = new CustomerResponse()
             {
-                Id = Guid.NewGuid(),
+                Id = Id,
                 FirstName = "James",
                 LastName = "Bond",
                 Phone = 1234567890,
@@ -45,11 +49,15 @@ namespace UnitTests.Application.Features.Customers
             _validatorMock.Setup(validator => validator.Validate(It.IsAny<GetCustomerQuery>()))
                          .Returns(new ValidationResult());
 
-            _mapperMock.Setup(mapper => mapper.Map<CustomerResponse>(It.IsAny<Customer>()))
-                      .Returns(new CustomerResponse());
-
             _customerRepositoryMock.Setup(repo => repo.GetByIdAsync(It.IsAny<Guid>(), It.IsAny<CancellationToken>()))
-                                 .ReturnsAsync(new Customer());
+                                 .ReturnsAsync(new Customer
+                                 {
+                                     Id = Id,
+                                     FirstName = "James",
+                                     LastName = "Bond",
+                                     Phone = 1234567890,
+                                     Email = "James@Bond.com"
+                                 });
 
             // Act
             var result = await _handler.Handle(query, CancellationToken.None);
