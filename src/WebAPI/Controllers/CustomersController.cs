@@ -1,9 +1,8 @@
-﻿using Application.Features.Customers.Commands.CreateCustomer;
-using Application.Features.Customers.Commands.DeleteCustomer;
-using Application.Features.Customers.Commands.UpdateCustomer;
-using Application.Features.Customers.Common;
-using Application.Features.Customers.Queries.GetCustomer;
-using Application.Features.Customers.Queries.GetStockList;
+﻿using Application.Features.Customers.Create;
+using Application.Features.Customers.Delete;
+using Application.Features.Customers.Get;
+using Application.Features.Customers.GetList;
+using Application.Features.Customers.Update;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
