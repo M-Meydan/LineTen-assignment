@@ -57,7 +57,7 @@ namespace UnitTests.Application.Features.Customers
             // Assert
             Assert.NotNull(result);
             Assert.NotNull(result.Data);
-            Assert.Equal(customers.Count, result.Data.Count); // Ensure the expected number of items
+            Assert.Equal(customers.Count, result.Data.Count); 
             Assert.Equal(query.PageNumber, result.PageNumber);
         }
     }

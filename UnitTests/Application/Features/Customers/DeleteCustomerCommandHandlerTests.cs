@@ -59,7 +59,7 @@ namespace UnitTests.Application.Features.Customers
             var result = await _handler.Handle(new DeleteCustomerCommand { Id = customerId }, CancellationToken.None);
 
             // Assert
-            Assert.Null(result); // Check if the result is null for a non-existing customer
+            Assert.Null(result);
         }
 
     }

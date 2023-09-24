@@ -19,9 +19,9 @@ namespace Application.Features.Products.Update
         {
             readonly IProductRepository _productRepository;
             readonly IMapper _mapper;
-            public UpdateProductHandler(IProductRepository customerRepository, IMapper mapper)
+            public UpdateProductHandler(IProductRepository productRepository, IMapper mapper)
             {
-                _productRepository = customerRepository;
+                _productRepository = productRepository;
                 _mapper = mapper;
             }
 

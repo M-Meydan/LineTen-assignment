@@ -1,7 +1,8 @@
 ﻿using Application.Common.Mappings;
+using Application.Features.Customers.Update;
 using Domain;
 
-namespace Application.Features.Customers.Update
+namespace Application.Features.Products.Update
 {
     public class UpdateProductRequest : IMapTo<UpdateCustomerCommand>
     {

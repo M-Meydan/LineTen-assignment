@@ -1,8 +1,6 @@
 ﻿using Application.Common.Interfaces.Infrastructure.Persistence.Repositories;
 using Application.Features.Customers.Common;
-using Application.Features.Customers.Create;
 using Application.Features.Customers.Get;
-using Application.Features.Customers.Update;
 using AutoMapper;
 using Domain.Entities;
 using FluentValidation;
