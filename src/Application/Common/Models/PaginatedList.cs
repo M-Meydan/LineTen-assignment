@@ -6,17 +6,25 @@ namespace Application.Common.Models;
 
 public class PaginatedList<T>
 {
-    public List<T> Data { get; }
+    public List<T> Data { get; set; }
 
-    public int PageNumber { get; }
+    public int PageNumber { get; set; }
+    public int PageSize { get; set; }
 
-    public int TotalPages { get; }
+    public int TotalPages { get; set; }
 
-    public int TotalCount { get; }
+    public int TotalCount { get; set; }
+
+    public PaginatedList()
+    {
+        Data = new List<T>();
+    }
+
 
     public PaginatedList(List<T> data, int totalCount, int pageNumber = 1, int pageSize = 10)
     {
         PageNumber = pageNumber;
+        PageSize = pageSize;
         TotalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
         TotalCount = totalCount;
         Data = data;

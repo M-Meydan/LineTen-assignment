@@ -35,7 +35,9 @@ namespace WebAPI
         {
             using var scope = app.ApplicationServices.CreateScope();
             var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-            dbContext.Database.Migrate();
+
+            if(!dbContext.Database.IsInMemory())
+                dbContext.Database.Migrate();
         }
 
         static IServiceCollection RegisterServices(this IServiceCollection services, IConfiguration configuration)
